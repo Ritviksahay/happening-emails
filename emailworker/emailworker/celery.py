@@ -17,3 +17,5 @@ broker_use_ssl = {
 
 app.conf.broker_transport_options = {"visibility_timeout": 3600}  # Optional
 app.conf.broker_use_ssl = broker_use_ssl
+
+#i hope this works
