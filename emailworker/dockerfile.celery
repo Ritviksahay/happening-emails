@@ -1,11 +1,16 @@
-# Use the same base image
 FROM python:3.10
 
 WORKDIR /app
 
-COPY . /app/
-
-RUN pip install --upgrade pip
+# Install dependencies
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-CMD ["celery", "-A", "emailworker", "worker", "--loglevel=info"]
+# Install Redis inside the container
+RUN apt-get update && apt-get install -y redis-server
+
+# Copy app files
+COPY . .
+
+# Start Redis before Celery
+CMD redis-server --daemonize yes && celery -A your_project_name worker --loglevel=info
