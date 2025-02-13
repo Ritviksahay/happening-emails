@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: emailworker
+    env: docker
+    repo: https://github.com/Ritviksahay/happening-emails
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8000
+    autoDeploy: true
